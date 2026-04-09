@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "app" {
       { name = "PORT", value = tostring(var.container_port) },
       { name = "TABLE_NAME", value = aws_dynamodb_table.main.name },
       { name = "AWS_REGION", value = var.aws_region },
-      { name = "ASSET_BASE_URL", value = "https://${var.domain_name}" },
+      { name = "ASSET_BASE_URL", value = "https://${aws_cloudfront_distribution.main.domain_name}" },
     ]
     logConfiguration = {
       logDriver = "awslogs"
