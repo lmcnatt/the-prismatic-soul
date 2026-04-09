@@ -1,0 +1,9 @@
+<%- include('header') %>
+
+<section class="max-w-xl mx-auto px-6 py-24 text-center">
+  <h1 class="font-display text-4xl font-bold text-crimson-500">Something Went Wrong</h1>
+  <p class="text-gray-400 mt-4"><%= typeof message !== 'undefined' ? message : 'An unexpected error occurred.' %></p>
+  <a href="/" class="inline-block mt-8 px-6 py-3 bg-prism-600 rounded-lg text-white font-semibold hover:bg-prism-500 transition">Return Home</a>
+</section>
+
+<%- include('footer') %>

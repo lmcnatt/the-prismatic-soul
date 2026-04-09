@@ -1,0 +1,64 @@
+<%- include('header') %>
+
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <div class="text-center mb-12">
+    <h1 class="font-display text-4xl font-black text-gold-400">Characters</h1>
+    <p class="text-gray-400 mt-3">Heroes, guides, and the forces of darkness that shape the multiverse.</p>
+    <div class="gold-line w-32 mx-auto mt-4"></div>
+  </div>
+
+  <div class="space-y-8">
+    <% characters.forEach(c => { %>
+    <div class="glass rounded-xl overflow-hidden card-hover">
+      <div class="flex flex-col md:flex-row">
+        <% if (c.imageKey) { %>
+        <div class="md:w-64 md:min-h-[280px] flex-shrink-0 overflow-hidden">
+          <img src="<%= assetBase %>/images/<%= c.imageKey %>" alt="<%= c.name %>"
+               class="w-full h-full object-cover object-top" loading="lazy"/>
+        </div>
+        <% } %>
+        <div class="p-6 flex-1">
+          <div class="flex items-start justify-between gap-4 flex-wrap">
+            <div>
+              <h2 class="font-display text-2xl font-bold text-gold-400"><%= c.name %></h2>
+              <p class="text-prism-400 text-sm mt-1"><%= c.title || '' %></p>
+            </div>
+            <% if (c.alignment) { %>
+              <span class="text-xs px-3 py-1 rounded-full border border-gold-500/30 text-gold-400 whitespace-nowrap"><%= c.alignment %></span>
+            <% } %>
+          </div>
+
+          <% if (c.role) { %>
+            <p class="text-gray-300 text-sm mt-3"><strong class="text-gold-500">Role:</strong> <%= c.role %></p>
+          <% } %>
+          <% if (c.origin) { %>
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed"><strong class="text-gold-500">Origin:</strong> <%= c.origin %></p>
+          <% } %>
+          <% if (c.description || c.concept) { %>
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed"><%= c.description || c.concept %></p>
+          <% } %>
+          <% if (c.personality) { %>
+            <p class="text-gray-400 text-sm mt-2"><strong class="text-prism-400">Personality:</strong> <%= c.personality %></p>
+          <% } %>
+          <% if (c.philosophy) { %>
+            <p class="text-gray-400 text-sm mt-2"><strong class="text-crimson-500">Philosophy:</strong> <%= c.philosophy %></p>
+          <% } %>
+          <% if (c.currentStatus) { %>
+            <p class="text-gray-500 text-xs mt-3 italic">Status: <%= c.currentStatus %></p>
+          <% } %>
+
+          <% if (c.quotes && c.quotes.length) { %>
+          <div class="mt-4 border-l-2 border-prism-600/50 pl-4 space-y-2">
+            <% c.quotes.forEach(q => { %>
+              <p class="text-gray-500 text-sm italic">"<%= q %>"</p>
+            <% }) %>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('footer') %>
